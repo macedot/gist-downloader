@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  gist-downloader:
+    image: ghcr.io/macedot/gist-downloader:latest
+    # Allow interactive mode for the CLI
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount output directory to persist downloaded gists
+      - ./gist:/app/gist
+    # Override entrypoint to allow passing commands
+    # Usage: docker-compose run gist-downloader https://gist.github.com/username --token $GITHUB_TOKEN
